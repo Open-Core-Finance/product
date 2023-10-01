@@ -60,31 +60,12 @@ bootJar {
 }
 
 dependencies {
-    // Spring
-    api ('org.springframework.boot:spring-boot-starter-data-jpa') {
-        // Exclude because current version of snakeyaml have vulnerabilities. Need re-define.
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
-    }
-    api ('org.springframework.boot:spring-boot-starter') {
-        // Exclude because current version of snakeyaml have vulnerabilities. Need re-define.
-        exclude group: 'org.yaml', module: 'snakeyaml'
-    }
-    api group: 'org.yaml', name: 'snakeyaml', version: "${snakeyamlVersion}"
-
     // Internal
     implementation group: 'tech.corefinance', name: 'microservice-common', version: "${internalCommonVersion}"
+    implementation group: 'tech.corefinance', name: 'microservice-common-jpa', version: "${internalCommonJpaVersion}"
 
     // Database
     implementation group: 'org.postgresql', name: 'postgresql', version: "${postgresqlVersion}"
-    api (group: 'org.hibernate', name: 'hibernate-entitymanager', version: "${hibernateVersion}") {
-        exclude group: 'javax.persistence', module: 'javax.persistence-api'
-        exclude group: 'javax.activation', module: 'javax.activation-api'
-        exclude group: 'javax.xml.bind', module: 'jaxb-api'
-    }
-    api group: 'org.hibernate.validator', name: 'hibernate-validator', version: "${hibernateValidatorVersion}"
-    api group: 'org.hibernate.orm', name: 'hibernate-hikaricp', version: "${hibernateHikaricpVersion}"
-    // Liquibase
-    api group: 'org.liquibase', name: 'liquibase-core', version: "${liquibaseVersion}"
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
