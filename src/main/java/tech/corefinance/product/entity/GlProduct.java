@@ -1,4 +1,4 @@
-package tech.corefinance.product.model;
+package tech.corefinance.product.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
