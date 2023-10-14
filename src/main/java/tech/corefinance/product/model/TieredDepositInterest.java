@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class TieredInterest extends AbstractInterestRate {
+public class TieredDepositInterest extends AbstractDepositInterestRate {
     private boolean applyWithholdingTaxes;
     private List<TieredInterestItem> interestItems;
 }

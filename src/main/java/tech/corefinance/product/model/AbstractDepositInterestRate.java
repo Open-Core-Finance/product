@@ -5,7 +5,7 @@ import tech.corefinance.product.enums.InterestCalculationMethod;
 import tech.corefinance.product.enums.InterestDayInYear;
 
 @Data
-public class AbstractInterestRate implements InterestRate {
+public class AbstractDepositInterestRate implements InterestRate {
 
     private InterestCalculationMethod calculationMethod;
     private InterestCalculationDateOption calculationDateOption;

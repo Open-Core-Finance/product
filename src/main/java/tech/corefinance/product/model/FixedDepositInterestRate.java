@@ -3,7 +3,7 @@ package tech.corefinance.product.model;
 import lombok.Data;
 
 @Data
-public class FixedInterestRate extends AbstractInterestRate {
+public class FixedDepositInterestRate extends AbstractDepositInterestRate {
     private boolean applyWithholdingTaxes;
     private boolean allowNegativeInterestRate;
 

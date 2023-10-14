@@ -12,4 +12,7 @@ public class GlProduct implements GenericModel<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    /**
+     * TBD...
+     */
 }

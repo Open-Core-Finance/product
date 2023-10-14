@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import tech.corefinance.product.enums.CreditArrangementManaged;
 import tech.corefinance.product.model.InterestRate;
 
 /**
@@ -17,4 +18,5 @@ public class DepositCurrentAccountProduct extends DepositProduct {
     @JdbcTypeCode(SqlTypes.JSON)
     private InterestRate overdraftsInterest;
     private Double maxOverdraftLimit;
+    private CreditArrangementManaged overdraftsUnderCreditArrangementManaged;
 }
