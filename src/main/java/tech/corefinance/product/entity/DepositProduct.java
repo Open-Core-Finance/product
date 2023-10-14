@@ -6,6 +6,7 @@ import lombok.Data;
 import tech.corefinance.common.model.GenericModel;
 import tech.corefinance.product.model.InterestRate;
 import tech.corefinance.product.model.ProductAvailability;
+import tech.corefinance.product.model.ProductFee;
 import tech.corefinance.product.model.ProductNewAccountSetting;
 
 import java.util.List;
@@ -31,10 +32,14 @@ public class DepositProduct implements GenericModel<Long> {
     private List<String> supportedCurrencies;
     private InterestRate interestRate;
 
+    // Internal control
+    private Integer daysToSetToDormant;
+
+    // Fees.
+    private boolean allowArbitraryFees;
+    private boolean showInactiveFees;
+    private List<ProductFee> productFees;
     /**
-     *  Internal Controls
-     *  Product Fees
-     *  Accounting Rules
      *  Deposit transaction limits
      *  WithdrawalLimits
      *  Dates
