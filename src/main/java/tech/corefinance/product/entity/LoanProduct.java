@@ -7,8 +7,10 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import tech.corefinance.common.model.GenericModel;
 import tech.corefinance.product.enums.CreditArrangementManaged;
+import tech.corefinance.product.model.InterestRate;
 import tech.corefinance.product.model.ProductAvailability;
 import tech.corefinance.product.model.ProductNewAccountSetting;
+import tech.corefinance.product.model.RepaymentScheduling;
 
 import java.util.List;
 
@@ -39,5 +41,8 @@ public abstract class LoanProduct implements GenericModel<Long> {
     private double loanMax;
     private double loanDefault;
     private CreditArrangementManaged underCreditArrangementManaged;
+
+    private InterestRate interestRate;
+    private RepaymentScheduling repaymentScheduling;
     // TBD
 }

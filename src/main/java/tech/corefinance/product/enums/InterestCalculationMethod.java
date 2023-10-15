@@ -2,18 +2,23 @@ package tech.corefinance.product.enums;
 
 public enum InterestCalculationMethod {
     /**
-     * Minimum Daily Balance: <br/>
-     * System will base the interest calculation on the minimum balance the client had in their account during the day.
+     * % per year.
      */
-    DAILY_MIN,
+    PERCENTAGE_PER_YEAR,
     /**
-     * Average Daily Balance: <br/>
-     * System will calculate the average balance that the client had in their account during the day, and base the interest calculation on that amount.
+     * % per month.
      */
-    DAILY_AVG,
+    PERCENTAGE_PER_MONTH,
     /**
-     * End of Day Balance: <br/>
-     * System will base the interest calculation on the balance the client had in their account at the end of the day.
+     * % per 4 weeks.
      */
-    END_OF_dAY;
+    PERCENTAGE_PER_4_WEEKS,
+    /**
+     * % per week.
+     */
+    PERCENTAGE_PER_WEEK,
+    /**
+     * % per X days.
+     */
+    PERCENTAGE_PER_X_DAYS;
 }
