@@ -1,6 +1,6 @@
 package tech.corefinance.product.model;
 
-public class MoneyConstraint {
+public class ValueConstraint {
     /**
      * Min amount of money.
      */

@@ -1,5 +1,5 @@
 package tech.corefinance.product.enums;
 
-public enum DepositTermUnit {
+public enum FrequencyOptionYearly {
     DAY, WEEK, MONTH;
 }

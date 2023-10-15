@@ -8,5 +8,9 @@ public enum LoanInterestType {
     /**
      * Compound Interest with Compounding Frequency as Daily;
      */
-    DAILY_COMPOUND;
+    DAILY_COMPOUND,
+    /**
+     * Capitalized Interest.
+     */
+    CAPITALIZED;
 }

@@ -1,5 +1,5 @@
 package tech.corefinance.product.enums;
 
-public enum IntervalOption {
+public enum FrequencyOption {
     DAY, WEEK, MONTH, YEAR;
 }

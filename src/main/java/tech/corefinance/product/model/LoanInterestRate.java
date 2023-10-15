@@ -9,6 +9,29 @@ public class LoanInterestRate implements InterestRate {
     private AccruedInterestPostingFrequency accruedInterestPostingFrequency;
     private LoanInterestType interestType;
     private InterestDayInYear interestDayInYear;
-    private InterestRateConstraint interestRateConstraint;
+    /**
+     * Interest Rate Constraints (%) for fixed interest rate. <br/>
+     * Interest Spread Constraints (%) for index rate source.
+     */
+    private ValueConstraint interestRateConstraint;
+    private String interestRateIndexSource;
     private RepaymentsInterestCalculation repaymentsInterestCalculation;
+
+    /**
+     * Interest Rate Floor (%).
+     */
+    private Double rateFloor;
+    /**
+     * Interest Rate Ceiling (%).
+     */
+    private Double rateCeiling;
+
+    /**
+     * Interest Rate Review Frequency.
+     */
+    private Integer reviewFrequency;
+    /**
+     * Interest Rate Review Frequency type as Days|Weeks|Months.
+     */
+    private FrequencyOptionYearly reviewFrequencyType;
 }

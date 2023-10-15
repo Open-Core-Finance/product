@@ -1,68 +1,84 @@
 package tech.corefinance.product.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-import tech.corefinance.common.model.GenericModel;
-import tech.corefinance.product.enums.DepositLimitType;
+import tech.corefinance.product.enums.CreditArrangementManaged;
+import tech.corefinance.product.enums.FrequencyOptionYearly;
 import tech.corefinance.product.model.*;
 
 import java.util.List;
 
+/**
+ * <b>CurrentAccount:</b> <br/>
+ * A transactional account where a client may perform regular deposit and withdrawals,
+ * accrue interest and may optionally be allowed to go into overdraft.<br/><br/>
+ *
+ * <b>Savings Account:</b> <br/>
+ * Allows you to create accounts where clients can make deposits and withdrawals when they wish.
+ * The interest is posted at the frequency you choose and accrued over time. It doesn't allow overdrafts.<br/><br/>
+ *
+ * <b>Fixed Deposit:</b> <br/>
+ * As the name suggests, fixed deposits have a fixed term after which they should be withdrawn or closed.
+ * With this type of product, clients are able to make deposits until the minimum opening balance has been reached.
+ * At this point, you can begin the maturity period, during which they will be unable to deposit, but will be able to withdraw.
+ * Before the maturity date, you have the option to undo maturity. <br/><br/>
+ * <b>Savings Plan: </b><br/>Uses a maturity period like fixed deposits,
+ * but once the minimum opening balance has been reached, they will still be able to make deposits,
+ * even during the maturity period itself.
+ * However, they will no longer be able to make deposits once the maturity period has ended. <br/><br/>
+ *
+ * <b>Savings Plan:</b> <br/>
+ * Uses a maturity period like fixed deposits, but once the minimum opening balance has been reached,
+ * they will still be able to make deposits, even during the maturity period itself.
+ * However, they will no longer be able to make deposits once the maturity period has ended.<br/><br/>
+ */
 @Data
 @Entity
-@MappedSuperclass
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "deposit_product")
-public abstract class DepositProduct implements GenericModel<Long> {
+public class DepositProduct extends Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @NotNull
-    private String category;
-    private String description;
-    private boolean activated;
-    @NotNull
-    @JdbcTypeCode(SqlTypes.JSON)
-    private List<ProductAvailability> productAvailabilities;
-    @NotNull
-    @JdbcTypeCode(SqlTypes.JSON)
-    private ProductNewAccountSetting newAccountSetting;
-    @NotNull
-    private String mainCurrency;
     @JdbcTypeCode(SqlTypes.JSON)
     private List<String> supportedCurrencies;
     /**
      * Interest Rate.
      */
     @JdbcTypeCode(SqlTypes.JSON)
-    private InterestRate interestRate;
+    private DepositInterestRate interestRate;
 
     // Internal control
     private Integer daysToSetToDormant;
 
-    // Product Fees
-    private boolean allowArbitraryFees;
-    private boolean showInactiveFees;
-    @JdbcTypeCode(SqlTypes.JSON)
-    private List<ProductFee> productFees;
-
     /**
-     *  Deposit transaction limits.
+     * Deposit transaction limits.
      */
     @JdbcTypeCode(SqlTypes.JSON)
     private List<DepositLimit> depositLimits;
     /**
-     *  Withdrawal Limits.
+     * Withdrawal Limits.
      */
     @JdbcTypeCode(SqlTypes.JSON)
     private WithdrawalLimit withdrawalLimit;
     /**
-     *  Early Closure Period.
+     * Early Closure Period.
      */
     @JdbcTypeCode(SqlTypes.JSON)
     private Integer earlyClosurePeriod;
+
+    private Boolean allowOverdrafts;
+    @JdbcTypeCode(SqlTypes.JSON)
+    private DepositInterestRate overdraftsInterest;
+    private Double maxOverdraftLimit;
+    private CreditArrangementManaged overdraftsUnderCreditArrangementManaged;
+
+    @Enumerated(EnumType.STRING)
+    private FrequencyOptionYearly termUnit;
+    private Double minTermLength;
+    private Double maxTermLength;
+    private Double defaultTermLength;
+    private Boolean allowDepositAfterMaturityDate;
 }

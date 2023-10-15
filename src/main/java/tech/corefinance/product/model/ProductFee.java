@@ -2,6 +2,7 @@ package tech.corefinance.product.model;
 
 import lombok.Data;
 import tech.corefinance.product.enums.MonthlyPayOption;
+import tech.corefinance.product.enums.ProductFeeType;
 
 @Data
 public class ProductFee {
@@ -10,11 +11,9 @@ public class ProductFee {
     private String id;
     private String name;
     private ProductFeeType type;
-    private double amount;
+    private Double amount;
+    private Double disbursedPercent;
 
     private MonthlyPayOption monthlyPayOption;
-
-    public enum ProductFeeType {
-        MANUAL_FEE, MONTHLY_FEE;
-    }
+    private Boolean requiredFeeApplication;
 }
