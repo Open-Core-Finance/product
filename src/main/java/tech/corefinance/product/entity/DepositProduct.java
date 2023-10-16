@@ -73,6 +73,7 @@ public class DepositProduct extends Product {
     @JdbcTypeCode(SqlTypes.JSON)
     private DepositInterestRate overdraftsInterest;
     private Double maxOverdraftLimit;
+    @Enumerated(EnumType.STRING)
     private CreditArrangementManaged overdraftsUnderCreditArrangementManaged;
 
     @Enumerated(EnumType.STRING)

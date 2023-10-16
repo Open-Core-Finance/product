@@ -14,7 +14,7 @@ import java.io.File;
 
 @SpringBootApplication(scanBasePackages = {"tech.corefinance.product", "tech.corefinance.common"})
 @EnableJpaRepositories(basePackages = {"tech.corefinance.product.repository", "tech.corefinance.common.jpa.repository"})
-@EntityScan(basePackages = {"tech.corefinance.common.jpa.model", "tech.corefinance.product.model"})
+@EntityScan(basePackages = {"tech.corefinance.common.jpa.model", "tech.corefinance.product.entity"})
 public class ProductApplication {
 
     public static void main(String[] args) {

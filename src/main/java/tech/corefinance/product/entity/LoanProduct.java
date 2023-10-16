@@ -1,6 +1,8 @@
 package tech.corefinance.product.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -19,7 +21,7 @@ public abstract class LoanProduct extends Product {
     private double loanMin;
     private double loanMax;
     private double loanDefault;
-    @JdbcTypeCode(SqlTypes.JSON)
+    @Enumerated(EnumType.STRING)
     private CreditArrangementManaged underCreditArrangementManaged;
     @JdbcTypeCode(SqlTypes.JSON)
     @NotNull
