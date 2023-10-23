@@ -27,7 +27,7 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          auto: update
+          auto: validate
       show-sql: true
       generate-ddl: false
   # Liquibase settings
