@@ -3,9 +3,9 @@ package tech.corefinance.product.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import tech.corefinance.common.repository.CommonResourceRepository;
-import tech.corefinance.product.entity.LoanProduct;
+import tech.corefinance.product.entity.Organization;
 
 @Repository
-public interface LoanProductRepository extends JpaRepository<LoanProduct, String>,
-        CommonResourceRepository<LoanProduct, String> {
+public interface OrganizationRepository extends JpaRepository<Organization, String>,
+        CommonResourceRepository<Organization, String> {
 }

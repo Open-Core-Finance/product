@@ -13,8 +13,8 @@ import tech.corefinance.common.enums.CommonConstants;
 import java.io.File;
 
 @SpringBootApplication(scanBasePackages = {"tech.corefinance.product", "tech.corefinance.common"})
-@EnableJpaRepositories(basePackages = {"tech.corefinance.product.repository", "tech.corefinance.common.jpa.repository"})
-@EntityScan(basePackages = {"tech.corefinance.common.jpa.model", "tech.corefinance.product.model"})
+@EnableJpaRepositories(basePackages = {"tech.corefinance.product.repository", "tech.corefinance.common.jpa.repository", "tech.corefinance.common.repository"})
+@EntityScan(basePackages = {"tech.corefinance.common.jpa.model", "tech.corefinance.product.entity", "tech.corefinance.common.model"})
 public class ProductApplication {
 
     public static void main(String[] args) {
