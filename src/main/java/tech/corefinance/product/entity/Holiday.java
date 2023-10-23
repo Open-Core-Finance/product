@@ -2,6 +2,7 @@ package tech.corefinance.product.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import tech.corefinance.common.model.CreateUpdateDto;
 import tech.corefinance.common.model.GenericModel;
 
 import java.time.LocalDate;
@@ -9,10 +10,10 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "holiday")
-public class Holiday implements GenericModel<String> {
+public class Holiday implements GenericModel<String>, CreateUpdateDto<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(name = "holiday_date")
     private LocalDate holidayDate;

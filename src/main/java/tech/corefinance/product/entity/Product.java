@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import tech.corefinance.common.model.CreateUpdateDto;
 import tech.corefinance.common.model.GenericModel;
 import tech.corefinance.product.model.ProductAvailability;
 import tech.corefinance.product.model.ProductFee;
@@ -15,9 +16,9 @@ import java.util.List;
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
-public abstract class Product implements GenericModel<String> {
+public abstract class Product implements GenericModel<String>, CreateUpdateDto<String> {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
     @NotNull

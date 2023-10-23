@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import tech.corefinance.common.model.CreateUpdateDto;
 import tech.corefinance.common.model.GenericModel;
 
 import java.time.DayOfWeek;
@@ -13,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 @Entity
 @Table(name = "organization")
 @Data
-public class Organization implements GenericModel<String> {
+public class Organization implements GenericModel<String>, CreateUpdateDto<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
     @Column(name = "street_address_line_1")

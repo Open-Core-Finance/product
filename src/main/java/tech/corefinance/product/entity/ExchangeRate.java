@@ -5,12 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import tech.corefinance.common.model.CreateUpdateDto;
 import tech.corefinance.common.model.GenericModel;
 
 @Entity
 @Table(name = "exchange_rate")
 @Data
-public class ExchangeRate implements GenericModel<String> {
+public class ExchangeRate implements GenericModel<String>, CreateUpdateDto<String> {
     /**
      * Currency code to sell/buy.
      */
