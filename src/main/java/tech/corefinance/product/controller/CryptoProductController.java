@@ -9,7 +9,7 @@ import tech.corefinance.product.entity.CryptoProduct;
 import tech.corefinance.product.repository.CryptoProductRepository;
 
 @RestController
-@RequestMapping("crypto-products")
+@RequestMapping("/crypto-products")
 @ControllerManagedResource("cryptoproduct")
 public class CryptoProductController implements CrudServiceAndController<String, CryptoProduct, CryptoProduct, CryptoProductRepository> {
 

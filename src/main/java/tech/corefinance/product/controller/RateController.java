@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.corefinance.common.annotation.ControllerManagedResource;
 import tech.corefinance.common.controller.CrudServiceAndController;
-import tech.corefinance.product.entity.ProductCategory;
 import tech.corefinance.product.entity.Rate;
-import tech.corefinance.product.repository.ProductCategoryRepository;
 import tech.corefinance.product.repository.RateRepository;
 
 @RestController
-@RequestMapping("rates")
+@RequestMapping("/rates")
 @ControllerManagedResource("rate")
 public class RateController implements CrudServiceAndController<String, Rate, Rate, RateRepository> {
 

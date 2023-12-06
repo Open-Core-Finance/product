@@ -9,7 +9,6 @@ import tech.corefinance.common.model.GenericModel;
 
 import java.time.DayOfWeek;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Entity
 @Table(name = "organization")
@@ -30,7 +29,9 @@ public class Organization implements GenericModel<String>, CreateUpdateDto<Strin
     @Column(name = "phone_number")
     private String phoneNumber;
     private String email;
-    private String currency;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "currency_id")
+    private Currency currency;
     private String timezone;
     @Column(name = "local_date_format")
     private String localDateFormat;
