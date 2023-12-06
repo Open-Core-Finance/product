@@ -9,7 +9,7 @@ import tech.corefinance.product.entity.Branch;
 import tech.corefinance.product.repository.BranchRepository;
 
 @RestController
-@RequestMapping("branches")
+@RequestMapping("/branches")
 @ControllerManagedResource("branch")
 public class BranchController implements CrudServiceAndController<String, Branch, Branch, BranchRepository> {
 

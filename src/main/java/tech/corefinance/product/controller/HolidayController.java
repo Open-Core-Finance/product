@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.corefinance.common.annotation.ControllerManagedResource;
 import tech.corefinance.common.controller.CrudServiceAndController;
-import tech.corefinance.product.entity.GlProduct;
 import tech.corefinance.product.entity.Holiday;
-import tech.corefinance.product.repository.GlProductRepository;
 import tech.corefinance.product.repository.HolidayRepository;
 
 @RestController
-@RequestMapping("holidays")
+@RequestMapping("/holidays")
 @ControllerManagedResource("holiday")
 public class HolidayController implements CrudServiceAndController<String, Holiday, Holiday, HolidayRepository> {
 

@@ -1,15 +1,5 @@
--- db/changelog/sql/001-create-product-tables.sql
-
 -- Liquibase formatted SQL
-
--- ChangeSet
--- ChangeSet author: Trung Doan
--- ChangeSet id: 001
-
-CREATE TABLE IF NOT EXISTS anonymous_url_access
-(
-    id character varying(255) PRIMARY KEY
-);
+-- ChangeSet Trung.Doan:1 labels:permission,basic-table runOnChange:true
 
 CREATE TABLE IF NOT EXISTS resource_action
 (
@@ -55,9 +45,11 @@ CREATE TABLE IF NOT EXISTS rate_source
 
 CREATE TABLE IF NOT EXISTS currency
 (
-    id character varying(255) PRIMARY KEY,
+    id character varying(255) DEFAULT gen_random_uuid()::character varying(255) PRIMARY KEY,
     name character varying(255),
-    symbol character varying(255)
+    symbol character varying(255),
+    decimal_mark character varying(10),
+    symbol_at_beginning boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS product_category
@@ -202,7 +194,7 @@ CREATE TABLE IF NOT EXISTS organization
     id character varying(255) DEFAULT gen_random_uuid()::character varying(255) PRIMARY KEY,
     city character varying(255),
     country character varying(255),
-    currency character varying(255),
+    currency_id character varying(255),
     decimal_mark character varying(255),
     email character varying(255),
     icon_url character varying(255),
@@ -215,7 +207,10 @@ CREATE TABLE IF NOT EXISTS organization
     state character varying(255),
     street_address_line_1 character varying(255),
     timezone character varying(255),
-    zip_postal_code character varying(255)
+    zip_postal_code character varying(255),
+    CONSTRAINT currency_foreign_key FOREIGN KEY (currency_id) REFERENCES currency (id) MATCH FULL
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
+    CONSTRAINT organization_name_unique UNIQUE NULLS NOT DISTINCT (name)
 );
 
 CREATE TABLE IF NOT EXISTS rate
@@ -232,4 +227,3 @@ CREATE TABLE IF NOT EXISTS rate
         ON DELETE NO ACTION,
     CONSTRAINT rate_type_check CHECK (type::text = ANY (ARRAY['INTEREST'::character varying, 'WITHHOLDING_TAX'::character varying, 'VALUE_ADDED_TAX'::character varying]::text[]))
 );
--- /ChangeSet

@@ -1,6 +1,9 @@
 package tech.corefinance.product.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -14,7 +17,6 @@ import tech.corefinance.product.model.ProductNewAccountSetting;
 import java.util.List;
 
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 public abstract class Product implements GenericModel<String>, CreateUpdateDto<String> {
     @Id

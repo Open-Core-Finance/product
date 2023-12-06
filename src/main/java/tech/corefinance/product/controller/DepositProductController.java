@@ -9,7 +9,7 @@ import tech.corefinance.product.entity.DepositProduct;
 import tech.corefinance.product.repository.DepositProductRepository;
 
 @RestController
-@RequestMapping("deposit-products")
+@RequestMapping("/deposit-products")
 @ControllerManagedResource("depositproduct")
 public class DepositProductController implements CrudServiceAndController<String, DepositProduct, DepositProduct, DepositProductRepository> {
 

@@ -1,6 +1,6 @@
 #Logging
 logging.config: classpath:logback.xml
-
+server.port: 8081
 spring:
   main:
     allow-bean-definition-overriding: false
@@ -13,14 +13,14 @@ spring:
       write-enums-using-to-string: false
       FAIL_ON_EMPTY_BEANS: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/core_finance_product
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:core_finance_product}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres}
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
     hikari:
       connection-test-query: SELECT 1
-      maximum-pool-size: 10 # Adjust as needed
-      minimum-idle: 2
+      maximum-pool-size: ${DB_MAX_CONNECTIONS:10}
+      minimum-idle: ${DB_MIN_CONNECTIONS:2}
       idle-timeout: 30000
       pool-name: product_service_pool
   jpa:
@@ -47,13 +47,17 @@ tech:
         zoned-date-time-to-date: true
     common:
       filter-ordered:
-        authen-filter: 0
+        authen-filter: 2
+        tenant-id-filter-order: 3
+        trace-info-id-order: 1
+        encoding-response-order: 0
       enabled:
         async: true
         simple-version: true
         property-encryption: true
         auto-response-encoding: true
         trace-id-filter: true
+        tenant: true
     log:
       enabled:
         services: true
@@ -83,19 +87,34 @@ tech:
         - .springframework.
         - .springdoc.
         - .test.
+      url-cors:
+        cors-configurations:
+          - url-pattern: /v3/api-docs/*
+            allowed-origins: '*'
+            allowed-methods:
+              - GET
+            allowed-headers: '*'
+          - url-pattern: /**
+            allowed-origins: '*'
+            allowed-methods:
+              - GET
+              - PUT
+              - OPTIONS
+              - DELETE
+              - POST
+              - PATCH
+            allowed-headers: '*'
     encryption:
       plain: test
       encoded: ENC(O5MFWIMMOz+V3iItOVY60g==)
-    initial:
-      name-separator: _
-      version-separator: .
-      data-regex:
-        permission:
-          file-name-regex: classpath:initial/*permissions*.json
-          replace-if-existed: true
-        internal-api:
-          file-name-regex: classpath:initial/*internal_api*.json
-          replace-if-existed: true
+    schema-tenancy:
+      mode: postgresql
+      ignore-schemas:
+        - public
+        - test_schema
+      enabled: true
+      schema-prefix: tenant_
+      default-schema: public
 export:
   format:
     date: yyyy/MM/dd
@@ -111,3 +130,12 @@ jasypt:
     string-output-type: base64
     key-obtention-iterations: 1000
     pool-size: 1
+
+management:
+  server:
+    port: ${server.port}
+  endpoints:
+    web:
+      base-path: /actuator
+      enabled: true
+      exposure.include: '*'
